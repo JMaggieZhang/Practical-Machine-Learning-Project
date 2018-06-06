@@ -27,8 +27,9 @@ Get the training and testing data from the given urls and read in them.
 ##read in training and testing data sets
 training <- read.csv("https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv", na.strings = c("NA","#DIV/0!",""))
 testing <- read.csv("https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv", na.strings=c("NA","#DIV/0!",""))
+dim(training)
 ```
-The origianl training set has 19622 observations of 160 variables.     
+The origianl training set has 19622 observations of 160 variables. We will subset the training data set into subtraining dataset (`intrain`) and sub-testing dataset `subtest`
 ```{r}
 intrain <- createDataPartition(training$classe, p = 0.7, list = FALSE)
 subtrain <- training[intrain, ]
@@ -51,7 +52,10 @@ subtest <- subtest[, - (1:5)]
 dim(subtrain)
 dim(subtest)
 ```
-
+##Discriptive Data Analysis
+```{r}
+plot(training$classe)
+``` 
 ##Model Building
 Before build any model, we will first devide the training data set into `subtrain` and `subtest` using the `classe` variable. By doing this, we can use the `subtest` data set as the cross validation data. We will train the model on the `subtrain` data set and predict the result on the `subtest` data set, using both random forest and boosting. Therefore, we can see the accuries of the two models, and the 
 
