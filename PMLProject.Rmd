@@ -29,7 +29,7 @@ training <- read.csv("https://d396qusza40orc.cloudfront.net/predmachlearn/pml-tr
 testing <- read.csv("https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv", na.strings=c("NA","#DIV/0!",""))
 dim(training)
 ```
-The origianl training set has 19622 observations of 160 variables. We will subset the training data set into subtraining dataset (`intrain`) and sub-testing dataset `subtest`
+The origianl training set has 19622 observations of 160 variables. We will subset the training data set into subtraining dataset (`subtrain`) and sub-testing dataset (`subtest`).
 ```{r}
 intrain <- createDataPartition(training$classe, p = 0.7, list = FALSE)
 subtrain <- training[intrain, ]
